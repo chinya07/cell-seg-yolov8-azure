@@ -49,8 +49,7 @@ open up you local host and port
 
 ## Save pass:
 
-S6tXzK7IxUHz9O/9jkhciLsseddeQ++E+OcD7nQYy8+ACRDtEgUW
-
+nl4m7FEnkrxNAkflKcu5tCjnn62ljraWB7snJRh3dt+ACRAgk6ip
 
 ## Run from terminal:
 
