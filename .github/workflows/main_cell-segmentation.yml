@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - cell-segmentation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://cellseg.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_6aaeef816e0f4af1b312360479c7e9d9 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_617ad582fa994abcb0d4a2b2ba1ee9dc }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: cellseg.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6aaeef816e0f4af1b312360479c7e9d9 }}/cell:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'cell-segmentation'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7f926a5b18ff4dafa5f869b6dde48d5f }}
+        images: 'cellseg.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6aaeef816e0f4af1b312360479c7e9d9 }}/cell:${{ github.sha }}'
