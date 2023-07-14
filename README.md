@@ -1,4 +1,4 @@
-# cell-seg-yolov8-azure
+# cell-segmentation-yolov8
 
 ## Workflows
 
