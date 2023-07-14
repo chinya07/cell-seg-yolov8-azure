@@ -15,7 +15,7 @@
 Clone the repository
 
 ```bash
-[https://github.com/entbappy/End-to-end-Cell-Segmentation-Using-Yolo-v8](https://github.com/chinya07/instance-segmentation-yolov8-aws)
+https://github.com/chinya07/instance-segmentation-yolov8-aws
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
