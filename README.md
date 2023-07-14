@@ -49,15 +49,14 @@ open up you local host and port
 
 ## Save pass:
 
-nl4m7FEnkrxNAkflKcu5tCjnn62ljraWB7snJRh3dt+ACRAgk6ip
-
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ## Run from terminal:
 
-docker build -t cellseg.azurecr.io/cell:latest .
+docker build -t <container_name>.azurecr.io/cell:latest .
 
-docker login cellseg.azurecr.io
+docker login <container_name>.azurecr.io
 
-docker push cellseg.azurecr.io/cell:latest
+docker push <container_name>.azurecr.io/cell:latest
 
 
 ## Deployment Steps:
